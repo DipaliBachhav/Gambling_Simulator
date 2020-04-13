@@ -8,6 +8,8 @@ BET=$(( RANDOM%2 ))
 if [[ $BET -eq 1 ]]
 then
 	echo "Win"
+	STAKE=$(($STAKE+50))
 else
 	echo "Loose"
+	STAKE=$(($STAKE-50))
 fi
