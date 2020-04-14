@@ -78,3 +78,10 @@ do
 	fi
 done
 
+#check playing next month or not
+if [[ $total_win_amount -gt $total_loose_amount ]]
+then
+	echo "player continue playing next month:"
+else
+	echo "player not countinue playing next month"
+fi
