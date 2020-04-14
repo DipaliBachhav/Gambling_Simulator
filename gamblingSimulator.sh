@@ -5,6 +5,8 @@ bet=1
 STAKE=100
 BET=1
 TOTAL_DAYS=20
+declare -A array1
+declare -A array2
 
 bet=$(( RANDOM%2 ))
 if [[ $bet -eq 1 ]]
