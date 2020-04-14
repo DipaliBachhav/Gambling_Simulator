@@ -27,9 +27,11 @@ do
 		then
 			amount=$(( $amount+$BET ))
 			win_Amount=$(( $win_Amount+$amount ))
+			win_Amount=$(( $win_Amount+$BET ))
 		else
 			amount=$(( $amount-$BET ))
 			loose_Amount=$(( $loose_Amount+$amount ))
+			loose_Amount=$(( $loose_Amount+$BET ))
 		fi
 	done
 	(( day++ ))
