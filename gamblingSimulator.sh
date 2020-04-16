@@ -5,8 +5,8 @@ bet=1
 STAKE=100
 BET=1
 TOTAL_DAYS=20
-declare -A array1
-declare -A array2
+declare -A Win
+declare -A Loose
 
 bet=$(( RANDOM%2 ))
 if [[ $bet -eq 1 ]]
@@ -39,49 +39,49 @@ do
 	(( day++ ))
 
 #calculated total win amount ,loss amount and day win or loss
-total_win_amount=$(($total_win_amount+$win_Amount))
-total_loose_amount=$(($total_loose_amount+$loose_Amount))
+total_Win_Amount=$(($total_Win_Amount+$win_Amount))
+total_Loose_Amount=$(($total_Loose_Amount+$loose_Amount))
 
-if [ $total_win_amount -gt $total_loose_amount ]
+if [ $total_Win_Amount -gt $total_Loose_Amount ]
 then
-	 result1=$(($total_win_amount-$total_loose_amount))
+	 Winner=$(($total_Win_Amount-$total_Loose_Amount))
 	 ((win_day++))
 else
-	result1=$(($total_loose_amount-$total_win_amount))
+	Looser=$(($total_Loose_Amount-$total_Win_Amount))
 	((loss_day++))
 fi
-array1[$day]=$win_Amount
-array2[$day]=$loose_Amount
+Win[$day]=$win_Amount
+Loose[$day]=$loose_Amount
 ((day++))
 done
 #calculated luckiest day
-echo " ${array1[@]}"
-max_value=${array1[1]}
+echo " ${Win[@]}"
+max_Value=${Win[1]}
 for (( i=1;i<=20;i++ ))
 do
-	if [[ ${array1[$i]} -gt $max_value ]]
+	if [[ ${Win[$i]} -gt $max_Value ]]
 	then
-			max_value=${array1[$i]}
-			luckiest_day=$i
+			max_Value=${Win[$i]}
+			luckiest_Day=$i
 	fi
 done
-echo "Win Amount $win_Amount"
-echo "Loose Amount $loose_Amount"
+#echo "Win Amount $win_Amount"
+#echo "Loose Amount $loose_Amount"
 
 #calculated unluckiest day
-echo "${array2[@]}"
-min_value=${array2[1]}
+echo "${Loose[@]}"
+min_Value=${Loose[1]}
 for (( j=1;j<=20;j++ ))
 do
-	if [[ ${array2[$j]} -lt $min_value ]]
+	if [[ ${Loose[$j]} -lt $min_Value ]]
 	then
-		min_value=${array1[$j]}
-		unluckiest_day=$j
+		min_Value=${Loose[$j]}
+		unluckiest_Day=$j
 	fi
 done
 
 #check playing next month or not
-if [[ $total_win_amount -gt $total_loose_amount ]]
+if [[ $total_Win_Amount -gt $total_Loose_Amount ]]
 then
 	echo "player continue playing next month:"
 else
